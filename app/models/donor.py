@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from bson.objectid import ObjectId
 from app.database import donor_collection
-from typing import Any
+from typing import Any, Optional
 
 """
 donor module
@@ -11,6 +11,7 @@ donor module
 class DonorBase(BaseModel):
     """ Base model for donor """
     name: str
+    phone_number: str
 
 
 class DonorCreate(DonorBase):
@@ -32,6 +33,10 @@ class Donor(DonorBase):
     class Config:
         """ pydantic configuration for donor """
         from_attributes = True
+        allow_population_by_field_name = True
+        json_encoders = {
+            ObjectId: str
+        }
 
 
 def donor_helper(donor: Any) -> dict:
@@ -40,6 +45,7 @@ def donor_helper(donor: Any) -> dict:
         "id": str(donor["_id"]),
         "name": donor["name"],
         "user_id": donor["user_id"],
+        "phone_number": donor["phone_number"]
     }
 
 
