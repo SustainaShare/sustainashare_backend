@@ -27,6 +27,7 @@ class Donor(DonorBase):
     """ class to represent a donor """
     id: str
     user_id: str
+    phone_number: str
 
     class Config:
         """ pydantic configuration for donor """

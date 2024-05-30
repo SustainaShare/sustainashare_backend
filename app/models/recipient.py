@@ -20,6 +20,7 @@ class Recipient(RecipientBase):
     """ class to represent a recipient """
     id: str
     user_id: str
+    phone_number: str
 
     class Config:
         """pydantic configuration for recipient """
