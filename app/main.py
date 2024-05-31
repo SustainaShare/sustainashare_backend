@@ -5,7 +5,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from app.routes import donations, user, donor, recipient, reviews
-from database import donor_collection, recipient_collection, donation_collection, user_collection, review_collection
+from app.database import donor_collection, recipient_collection, donation_collection, user_collection, review_collection
 
 load_dotenv()  # Load environment variables from .env file
 
