@@ -10,7 +10,10 @@ donation module
 class DonationBase(BaseModel):
     """ class for donation model """
     food_item: str
+    brand: str
+    description: str
     quantity: int
+    price: float
 
 
 class DonationCreate(DonationBase):
@@ -35,6 +38,8 @@ def donation_helper(donation) -> dict:
     return {
         "id": str(donation["_id"]),
         "food_item": donation["food_item"],
+        "brand": donation["brand"],
+        "description": donation["description"],
         "quantity": donation["quantity"],
         "donor_id": donation["donor_id"],
         "recipient_id": donation["recipient_id"],
@@ -77,3 +82,9 @@ async def update_donation(id: str, donation_data: DonationBase):
     if update_result.modified_count > 0:
         return await get_donation_by_id(id)
     return None
+
+
+async def get_donations_by_donor_id(donor_id: str, skip: int = 0, limit: int = 10):
+    """ function that gets a list of donations by donor id """
+    donations = await donation_collection.find({"donor_id": donor_id}).skip(skip).limit(limit).to_list(length=limit)
+    return [donation_helper(donation) for donation in donations]

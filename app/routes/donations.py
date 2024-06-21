@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException, APIRouter
 from typing import List
-from app.models.donation import Donation, DonationBase, DonationCreate, create_donation, get_donations, get_donation_by_id, delete_donation, update_donation
+from app.models.donation import Donation, DonationBase, DonationCreate, create_donation, get_donations, get_donation_by_id, delete_donation, update_donation, get_donations_by_donor_id
 from app.routes.auth import get_current_user
 from app.models.user import User
 

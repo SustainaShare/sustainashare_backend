@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 Flask
 Flask-Cors
 Jinja2
 requests
 pycodestyle
+=======
+>>>>>>> 213c1ec (new routes and models)
 uvicorn
 fastapi
 pymongo
 motor
 passlib
-python-jose[cryptography]
-pymongo[srv]
+python-jose
+pymongo
+pydantic

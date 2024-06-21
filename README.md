@@ -1,78 +1,62 @@
-# MongoDB Database Schema
+# Food Donation API
 
-This document describes the schema of our MongoDB database. These collections will support the main functionalities of our food donation platform, including user management, donation management, request management, communication management, data analytics, and system settings.
+## Overview
 
-## Users Collection
+The Food Donation API is designed to facilitate the management of food donations, donors and recipients. It provides a secure and efficient way for organizations to track and manage food donations, ensuring that donations reach those in need.
 
-Stores personal information and history of users.
+## Features
 
-**Fields:**
+- **User Management**: Register, authenticate and manage users.
+- **Donor Management**: Create, update and delete donors.
+- **Recipient Management**: Manage recipients who receive donations.
+- **Donation Tracking**: Track and manage food donations.
+- **Review System**: All users to leave reviews for donations.
 
-- `_id`: Unique identifier for the user
-- `username`: Username of the user
-- `password`: Password of the user
-- `email`: Email of the user
-- `role`: Role of the user, possible values include "donor", "recipient", and "administrator"
-- `profile`: Contains additional information such as contact details, preferences
-- `history`: List of past donations or requests made by the user
+## Technologies
+- **FastAPI**: For building the API.
+- **MongoDB**: For data storage.
+- **JWT**: For secure authentication.
+- **Pydantic**: For data validation.
 
-## Donations Collection
+## Key Features
 
-Stores information about donations.
+- **Asynchronous Operations**: The use of asynchronous operations (async/await) for handling I/O-bound tasks (e.g., database operations) to improve performance and scalability.
+- **Dependency Injection**: FastAPI's dependency injection system is used for injecting dependencies like get_current_user.
+- **Modular Design**: The code is modular, with separate functions for creating, retrieving, updating, and deleting donations. This improves maintainability and readability.
 
-**Fields:**
+## Installation
+### Prerequisites
+- Python 3.8+
+- MongoDB
 
-- `_id`: Unique identifier for the donation
-- `donorId`: ID of the donor
-- `itemDescription`: Description of the donated item
-- `quantity`: Quantity of the donated item
-- `expiryDate`: Expiry date of the donated item
-- `pickupAvailability`: Availability for pickup of the donated item
-- `location`: Location of the donation
-- `status`: Status of the donation, possible values include "pending", "approved", and "rejected"
+### Clone Repository
+```sh
+git clone https://github.com/kevkatam/Food-Donation-App 
+cd Food-Donation-App
+```
 
-## Requests Collection
+### Install Dependencies
 
-Stores information about donation requests.
+```sh
+pip install -r requirements.txt
+```
 
-**Fields:**
+## Run the Server
 
-- `_id`: Unique identifier for the request
-- `recipientId`: ID of the recipient
-- `donationId`: ID of the donation
-- `requestMessage`: Message of the request
-- `status`: Status of the request, possible values include "pending", "approved", and "rejected"
+```sh
+uvicorn app.main:app --reload
+```
 
-## Communications Collection
+The API wll be available at `http://127.0.0.1:8000`.
 
-Stores communication messages between users or administrators.
+## API Documentation
 
-**Fields:**
+The API documentation is available at http://127.0.0.1:8000/docs (Swagger UI) and http://127.0.0.1:8000/redoc (ReDoc).
 
-- `_id`: Unique identifier for the message
-- `senderId`: ID of the sender
-- `recipientId`: ID of the recipient
-- `message`: Content of the message
-- `timestamp`: Time of sending the message
+## License
 
-## Analytics Collection
+The project is license under the MIT License. 
 
-Stores analytics and reporting data.
+## Acknowledgements
 
-**Fields:**
-
-- `_id`: Unique identifier for the data
-- `date`: Date of the data
-- `donationCount`: Number of donations
-- `userCount`: Number of users
-- `participationRate`: Rate of participation
-
-## Settings Collection
-
-Stores system settings and configurations.
-
-**Fields:**
-
-- `_id`: Unique identifier for the setting
-- `settingName`: Name of the setting
-- `settingValue`: Value of the setting
+Thanks to the ALX mentors and community for their support and resources throughout the year and also thanks to the FastAPI and MongoDB communities for their support.

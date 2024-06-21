@@ -55,5 +55,15 @@ async def update_review_endpoint(review_id: str, review: ReviewCreate):
     updated_review = await update_review(review_id, review)
     if not updated_review:
         raise HTTPException(status_code=500, detail="Failed to update review")
-
     return updated_review
+
+@router.delete("/reviews/{review_id}", response_model=dict)
+async def delete_review_endpoint(review_id: str):
+    """ this endpoint allows users to delete a review
+    Path Parameter:
+        review_id: id of the review to be deleted
+    """
+    deleted_review = await delete_review(review_id)
+    if not deleted_review:
+        raise HTTPException(status_code=500, detail="Failed to delete review")
+    return {"message": "Review deleted successfully"}
